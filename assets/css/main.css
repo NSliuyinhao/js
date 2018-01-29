@@ -1,3 +1,4 @@
+/******************公共样式*********************/
 *{
     box-sizing: border-box;
 }
@@ -41,7 +42,7 @@ ul,ol,dl {
     padding-left: 15px;
     padding-right: 15px;
 }
-@media (max-width: 992px) {
+@media (min-width: 992px) {
     .my-container{
         width: 960px;
         margin: 0 auto;
@@ -53,6 +54,183 @@ ul,ol,dl {
         margin: 0 auto;
     }
 }
+/***************首页布局************************************************/
+.index{
+    padding-top: 30px;
+    margin: 0 auto;
+}
+.index .main{
+    padding-right: 0;
+}
+.index .aside{
+    padding: 0 0 0 4.16667%;
+}
+.index .main .banner{
+    margin-bottom: 35px;
+}
+.index .main .banner img{
+    width: 100%;
+    border-radius: 5px;
+}
+.index .main .recomment-collection{
+    margin-bottom: 10px;
+}
+.index .main .recomment-collection a{
+    display: inline-block;
+    min-width: 32px;
+    margin: 0 18px 18px 0;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    overflow: hidden;
+}
+.index .main .recomment-collection .more-hot-collection{
+    display: inline-block;
+    margin: 0;
+    vertical-align: top;
+    line-height: 34px;
+    font-size: 14px;
+    background: none;
+    border: none;
+    color: #979797;
 
+}
+.index .main .recomment-collection a img{
+    width: 32px;
+    height: 32px;
+    vertical-align: bottom;
+}
+.index .main .recomment-collection a span{
+    font-size: 14px;
+    display: inline-block;
+    line-height: 32px;
+    padding: 0 10px;
 
+}
+.index .main .split-line{
+    margin: 0 0 15px 0;
+    border-bottom: 1px solid lightblue;
+}
+.index .aside .board img{
+    width: 100%;
+    margin-bottom: 6px;
+}
+.note-list{
+    border: 0;
+    padding:0;
+    margin: 0;
+    list-style:none;
+}
+.note-list li{
+    position: relative;
+    width: 100%;
+    padding:0 0 17px 2px;
+    margin: 0 0 17px 0;
+    border-bottom: 1px solid #ccc;
+    word-wrap: break-word;
+}
+.note-list li.have-img>.wrap-img{
+    display: inline-block;
+    position: absolute;
+    top:50%;
+    right: 0;
+    margin-top: -60px;
+    width: 150px;
+    height: 120px;
+}
+.note-list li.have-img>.wrap-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    border: 1px solid #f0f0f0;
+}
+.note-list li.have-img .content{
+    padding-right: 160px;
+}
+.note-list .author {
+    margin-bottom: 14px;
+    font-size: 13px;
+}
+.note-list .author .avatar ,.note-list .author .info{
+    display: inline-block;
+    vertical-align: middle;
+}
+.avatar{
+    width: 32px;
+    height: 32px;
+    display: block;
+}
+.avatar img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+.note-list .author .avatar{
+    margin: 0 10px 0 0;
+}
+.note-list .author .info .time{
+    color: #969696;
+    padding-left: 5px;
+}
+.note-list .title{
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 7px;
+    /*line-height: 30px;*/
+}
+.note-list .title.visited{
+    color: #969696;
+}
+.note-list .abstract{
+    font-size: 13px;
+    line-height: 24px;
+    margin: 0 0 7px 0;
+}
+.note-list .meta{
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 400;
+}
+.note-list .collection-tag{
+    color: #ea6f5a!important;
+    border: 1px solid #ea6f5a;
+    border-radius: 4px;
+    padding: 3px 6px;
+    margin-right: 10px;
+    transition: all ease-in .5s;
+}
+.note-list .collection-tag:hover{
+    background: rgb(254,247,246);
+    border-color: rgb(236,97,73);
+}
+.note-list .meta .tag{
+    color: #b4b4b4!important;
+    margin-right: 10px;
+    transition: all ease-in .2s;
+}
+
+.note-list .meta .tag:hover{
+    color: rgb(120,120,120) !important;
+}
+.note-list .meta span{
+    color: #b4b4b4;
+}
+@media (max-width: 1080px) {
+    .note-list li.have-img .wrap-img{
+        margin-top: -58px;
+        bottom: 40px;
+        width: 125px;
+        height: 100px;
+    }
+    .note-list li.have-img .content{
+        padding-right: 135px;
+    }
+
+}
+/***************文章页面布局**********************************************************/
+
+/****************用户页面**********************************************************/
+
+/************************************************************************/
 

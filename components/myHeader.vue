@@ -127,7 +127,6 @@
 </template>
 <script>
     import Nuxt from "../.nuxt/components/nuxt";
-
     export default {
         components: {Nuxt},
         name: "my-header",
@@ -269,7 +268,7 @@
         font-size: 18px;
     }
     nav .nav-list{
-        margin: 0;
+        margin: 0 -15px;
         padding: 0;
     }
     nav .nav-list:after{
@@ -314,6 +313,7 @@
         min-width: 160px;
         box-shadow: 0 0 8px rgba(0,0,0,.1);
         font-size: 15px;
+        background: #fff;
     }
     nav .nav-list .notify .drop-menu ul{
         padding: 10px 0;
