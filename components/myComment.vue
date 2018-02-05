@@ -83,7 +83,7 @@
                                     <i class="fa fa-thumbs-o-up"></i>
                                     <span>{{comment.likes_count}}人点赞</span>
                                 </a>
-                                <a href="javascript:void (0)"  @click="answerOne(comment.id)">
+                                <a href="javascript:void (0)" >
                                     <i class="fa fa-comment"></i>
                                     <span>回复</span>
                                 </a>
@@ -100,7 +100,7 @@
                             </p>
                             <div class="sub-tool-group">
                                 <span>{{subComment.created_at | formatDate}}</span>
-                                <a href="javascript:void (0)" @click="answerTwo(comment.id)">
+                                <a href="javascript:void (0)">
                                     <i class="fa fa-comment-o"></i>
                                     <sapn>回复</sapn>
                                 </a>
@@ -108,31 +108,32 @@
 
                         </div>
                         <div class="more-comment">
-                            <a href="javascript:void (0)" class="add-comment-btn">
+                            <a href="javascript:void (0)" class="add-comment-btn" @click="showSubCommentForm(index)">
                                 <i class="fa fa-pencil"></i>
                                 <span>添加新评论</span>
                             </a>
                         </div>
-                        <form class="new-comment" :id="comment.id" :duration="500" name="fade" style="display: none">
-                            <textarea name="" id="'text-'+comment.id" placeholder="写下你的评论..." v-model="value"></textarea>
-                            <transition>
+                        <transition :duration="500" name="fade">
+                            <form class="new-comment" v-if="activeIndex.includes(index)">
+                                <textarea name="" placeholder="写下你的评论..."></textarea>
                                 <div class="write-function-block clearfix">
                                     <div class="emoji-modal-wrap">
-                                        <a href="javascript:void(0)" class="emoji" @click="isShowEmoji">
+                                        <a href="javascript:void(0)" class="emoji" @click="showSubEmoji(index)">
                                             <i class="fa fa-smile-o"></i>
                                         </a>
                                         <transition :duration="300" name="fade">
-                                            <div v-if="showEmoji" class="emoji-modal arrow-up">
-                                                <vue-emoji @select="selectEmoji"></vue-emoji>
+                                            <div v-if="emojiIndex.includes(index)" class="emoji-modal arrow-up">
+                                                <vue-emoji @select="selectSubEmoji"></vue-emoji>
                                             </div>
                                         </transition>
                                     </div>
                                     <div class="hint">Ctrl+Enter发表</div>
-                                    <a href="javascript:void(0)" class="btn btn-send" @click="sendData">发送</a>
-                                    <a href="javascript:void(0)" class="cancel" @click="send=false">取消</a>
+                                    <a href="javascript:void(0)" class="btn btn-send" @click="sendSubCommentData(index)">发送</a>
+                                    <a href="javascript:void(0)" class="cancel" @click="closeSubComment(index)">取消</a>
                                 </div>
-                            </transition>
-                        </form>
+                            </form>
+                        </transition>
+
                     </div>
                 </div>
             </div>
@@ -286,7 +287,9 @@
                         compiled_content:"楼上评论的都是大佬啊",
                         children:[]
                     }
-                ]
+                ],
+                activeIndex:[],
+                emojiIndex:[]
             }
         },
         methods:{
@@ -302,20 +305,35 @@
             sendData:function () {
                 console.log('发送value值的数据给后端')
             },
-            answerOne:function (id) {
-                let aswone = document.getElementById(id);
-                let text = document.getElementById('text-'+id);
-                if(aswone.style.display == 'none'){
-                    aswone.style.display = 'block';
-                }else{
-                    aswone.style.display='none';
+            showSubCommentForm:function (value) {
+                if(this.activeIndex.includes(value)){
+                    let index = this.activeIndex.indexOf(value);
+                    this.activeIndex.splice(index,1);
+                }else {
+                    this.activeIndex.push(value);
                 }
 
             },
-            answerTwo:function (id) {
-                let aswtwo = document.getElementById(id);
-                console.log(aswtwo.id)
+            sendSubCommentData:function (value) {
+                let index = this.activeIndex.indexOf(value);
+                this.activeIndex.splice(index,1);
+            },
+            closeSubComment:function (value) {
+                let index = this.activeIndex.indexOf(value);
+                this.activeIndex.splice(index,1);
+            },
+            showSubEmoji:function (value) {
+                if(this.emojiIndex.includes(value)){
+                    let index = this.emojiIndex.indexOf(value);
+                    this.emojiIndex.splice(index,1);
+                }else{
+                    this.emojiIndex.push(value);
+                }
+            },
+            selectSubEmoji:function () {
+
             }
+
         },
         directives:{
             "focus":{
