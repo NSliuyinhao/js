@@ -1,5 +1,5 @@
 <template>
-    <div @click="unshare">
+    <div>
         <my-header></my-header>
         <div class="note">
             <!--文章区域-->
@@ -97,11 +97,11 @@
                             <b-tooltip target="qqButton" placement="top">
                                 分享到QQ
                             </b-tooltip>
-                            <a href="javascrtpt:void(0)" class="more-share" @click.stop="share">
+                            <a href="javascrtpt:void(0)" class="more-share" id="popoverButton-sync" variant="primary">
                                 更多分享
                             </a>
-                            <div class="drop-menu" v-show="isShare">
-                                <ul>
+                            <b-popover :show.sync="showPop" target="popoverButton-sync" placement="top" triggers="focus">
+                                <ul class="share-list">
                                     <li>
                                         <a href="javascript:void(0)">
                                             <i class="fa fa-star-o" style="color: goldenrod"></i>
@@ -133,10 +133,17 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </div>
+                            </b-popover>
+                            <!--<div class="drop-menu" v-show="isShare">-->
+                                <!--<ul>-->
+
+                                <!--</ul>-->
+                            <!--</div>-->
                         </div>
                     </div>
                 </div>
+                <!--回复组件-->
+                <my-comment></my-comment>
             </div>
             <!--悬浮的操作框-->
             <div class="side-bar"></div>
@@ -148,6 +155,7 @@
 
 <script>
     import  myHeader from '~/components/myHeader'
+    import  myComment from '~/components/myComment'
     export default {
         name: "_id",
         data(){
@@ -162,12 +170,13 @@
                 },
                 isOranged:false,
                 likeNumber:35,
-                isShare:false
+                showPop:false
 
             }
         },
         components:{
-            myHeader
+            myHeader,
+            myComment
         },
         methods:{
             isFollow:function () {
@@ -203,23 +212,23 @@
                 if(this.isOranged==false){
                     // this.$refs.likegroup.style.background = '#ea6f5a';
                     // this.$refs.likegroup.style.color = '#fff'
-                    this.$refs.likegroup.classList.add('actives')
+                    this.$refs.likegroup.classList.add('active')
                     this.likeNumber = this.likeNumber + 1;
                     this.isOranged = true;
                 }else{
                     // this.$refs.likegroup.style.background = '#fff';
                     // this.$refs.likegroup.style.color = "#ea6f5a"
-                    this.$refs.likegroup.classList.remove('actives')
+                    this.$refs.likegroup.classList.remove('active')
                     this.likeNumber = this.likeNumber - 1;
                     this.isOranged = false;
                 }
             },
-            share:function () {
-                this.isShare = true;
-            },
-            unshare:function () {
-                this.isShare = false
-            }
+            // share:function () {
+            //     this.isShare = true;
+            // },
+            // unshare:function () {
+            //     this.isShare = false
+            // }
 
 
         }
